@@ -20,18 +20,13 @@ public class FruitUI {
     Manager fruitmanager = new Manager();
 
     //打印菜单
-    public void showList() {
+    public void showChoices() {
         System.out.println("==========水果超市==========");
-        System.out.println("【1】购买苹果");
-        System.out.println("【2】购买橘子");
-        System.out.println("【3】购买香蕉");
-        System.out.println("【4】显示选中商品");
-        System.out.println("【5】结账");
-        System.out.println("【6】打印小票");
-        System.out.println("【7】退出系统");
+        System.out.println("【1】购买水果");
+        System.out.println("【2】结账");
+        System.out.println("【3】打印小票");
+        System.out.println("【4】退出系统");
         System.out.println("============================");
-        Scanner sca = new Scanner(System.in);
-        userSelect(sca);
     }
 
     /**
@@ -39,36 +34,25 @@ public class FruitUI {
      * 此方法要对数组进行操作，引入mananer的Fruit【】数组
      */
     public void userSelect(Scanner sc) {
+        //先显示
+        showChoices();
         //提示输入选项
         System.out.println("请输入相应选项：");
         int inpo = sc.nextInt();
         switch (inpo) {
             case 1:
-                //增加苹果进数组
-                fruitmanager.BuyFruit(1, sc);
+                //购买水果
+                fruitmanager.BuyFruits(sc);
                 break;
             case 2:
-                //增加橘子进数组
-                fruitmanager.BuyFruit(2, sc);
-                break;
-            case 3:
-                //增加香蕉进数组
-                fruitmanager.BuyFruit(3, sc);
-                break;
-            case 4:
-                //打印选中水果
-                System.out.println("sssssss");
-                fruitmanager.printfruits();
-                break;
-            case 5:
                 //结账
                 fruitmanager.PayOff(sc);
                 break;
-            case 6:
+            case 3:
                 //打印小票
                 fruitmanager.PrintList(sc);
                 break;
-            case 7:
+            case 4:
                 //退出系统
                 System.exit(0);
                 break;
@@ -76,13 +60,15 @@ public class FruitUI {
                 System.out.println("你的选择有误！");
                 break;
         }
-        //询问用户是否继续
-        System.out.println("继续选择y/按任意键完全退出");
-        if (sc.next().equals("y")) {
-            userSelect(sc); //如果用户选择y就递归调用继续选择
+        System.out.println("是否继续下一步?(y/n)");
+        //用户是否选择
+        if (sc.next().equalsIgnoreCase("y")) {
+            userSelect(sc);
         }
 
+
     }
+
 
 
 }

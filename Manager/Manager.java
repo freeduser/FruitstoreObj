@@ -33,25 +33,25 @@ public class Manager {
     public static int counts = 0;
 
     //【添加数组元素】,只需要录入水果id和数量
-    public  void addFruit(int i, int count) {
+    public void addFruit(int i, Scanner sc) {
         if (counts < 5) {
             switch (i) {
                 case 1:
                     //提示输入数量
-
-                    fruits[counts] = new Apple(i, count);
+                    System.out.println("请输入苹果数量：");
+                    fruits[counts] = new Apple(i, sc.nextInt());
                     counts++;
                     break;
                 case 2:
                     //提示输入数量
                     System.out.println("请输入橘子数量：");
-                    fruits[counts] = new Orange(i, count);
+                    fruits[counts] = new Orange(i, sc.nextInt());
                     counts++;
                     break;
                 case 3:
                     //提示输入数量
                     System.out.println("请输入香蕉数量：");
-                    fruits[counts] = new Banana(i, count);
+                    fruits[counts] = new Banana(i, sc.nextInt());
                     counts++;
                     break;
                 default:
@@ -62,15 +62,51 @@ public class Manager {
         }
     }
 
+
+
     /**
-     * 封装增加水果方法
+     * 打印水果菜单
      */
-    public void BuyFruit (int i,Scanner sc){
-        System.out.println("请输入数量：");
-        //将数量以count表示
-        int count = sc.nextInt();
-        //增加数组元素
-        addFruit(i, count);
+    public void BuyFruits(Scanner sc) {
+        //水果菜单
+        fruitsList();
+        //提示用户选择
+        System.out.println("请输入编号：");
+        switch (sc.nextInt()) {
+            case 1:
+                addFruit(1,  sc);  //买苹果
+                break;
+            case 2:
+                addFruit(2, sc);    //买香蕉
+                break;
+            case 3:
+                addFruit(3, sc);    //买橘子
+                break;
+            case 4:
+                printfruits();     //打印已选中的商品
+                break;
+            default:
+                System.out.println("你的输入有误！");
+                break;
+
+        }
+        //询问用户是否继续
+        System.out.println("继续选择y/按任意键回主菜单");
+        if (sc.next().equals("y")) {
+            BuyFruits(sc); //如果用户选择y就递归调用继续选择
+        }
+    }
+
+    /**
+     * 打印水果菜单
+     */
+    public void fruitsList() {
+        System.out.println("***********今日鲜品***********");
+        System.out.println("[1]     苹果      ￥8.8！！");
+        System.out.println("[2]     香蕉      ￥3.3！！");
+        System.out.println("[3]     橘子      ￥5.0！！");
+        System.out.println("[4] 显示已选");
+        System.out.println("******************************");
     }
 
     /**

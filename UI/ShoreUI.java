@@ -1,5 +1,7 @@
 package SJ_4.FruitStoreObj.UI;
 
+import java.util.Scanner;
+
 /**
  * 类描述了
  * <p>
@@ -12,9 +14,9 @@ package SJ_4.FruitStoreObj.UI;
  */
 public class ShoreUI {
     public static void main(String[] args) {
-
-    FruitUI fUi = new FruitUI();
-    fUi.showList();
+        Scanner sc = new Scanner(System.in);
+        FruitUI fUi = new FruitUI();
+        fUi.userSelect(sc);
 
     }
 }
